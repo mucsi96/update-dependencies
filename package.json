@@ -1,0 +1,19 @@
+{
+  "name": "update-dependencies",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:mucsi96/update-dependencies.git",
+  "author": "Igor Mucsicska <mucsi_96@yahoo.com>",
+  "license": "MIT",
+  "dependencies": {
+    "react": "16.0.0",
+    "react-dom": "16.5.2"
+  },
+  "devDependencies": {
+    "@babel/core": "7.7.0",
+    "webpack": "2.6.0"
+  },
+  "dontUpdateDependencies": [
+    "react-dom"
+  ]
+}
