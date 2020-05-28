@@ -4,9 +4,7 @@ const { readFileSync, writeFileSync } = require("fs");
 
 const packageJsonPath = resolve(process.cwd(), "package.json");
 let packageJson = readFileSync(packageJsonPath, "utf8");
-
 const dontUpdate = JSON.parse(packageJson).dontUpdateDependencies || [];
-
 let outdated;
 
 try {
@@ -36,6 +34,4 @@ toUpdate.forEach(
     ))
 );
 
-// writeFileSync(packageJsonPath, packageJson);
-
-console.log(packageJson);
+writeFileSync(packageJsonPath, packageJson);
