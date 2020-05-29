@@ -16,15 +16,28 @@ try {
   outdated = err.stdout;
 }
 
-const toUpdate = JSON.parse(
-  outdated.split("\n").filter(Boolean).slice(-1).pop()
+const toUpdate = (
+  JSON.parse(outdated.split("\n").filter(Boolean).slice(-1).pop()).data.body ||
+  []
 )
-  .data.body.map(([package, current, , latest]) => ({
+  .map(([package, current, , latest]) => ({
     package,
     current,
     latest,
   }))
   .filter(({ package }) => !dontUpdate.includes(package));
+
+if (toUpdate.length) {
+  console.table(
+    toUpdate.reduce(
+      (acc, { package, current, latest }) => ({
+        ...acc,
+        [package]: { before: current, after: latest },
+      }),
+      {}
+    )
+  );
+}
 
 toUpdate.forEach(({ package, latest }) => {
   const regex = new RegExp(
