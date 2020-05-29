@@ -5,11 +5,15 @@
   "repository": "git@github.com:mucsi96/update-dependencies.git",
   "author": "Igor Mucsicska <mucsi_96@yahoo.com>",
   "license": "MIT",
+  "peerDependencies": {
+    "react": "^16.0.0"
+  },
   "dependencies": {
-    "react": "16.0.0",
+    "lodash": "4.9.0",
     "react-dom": "16.5.2"
   },
   "devDependencies": {
+    "react": "16.0.0",
     "@babel/core": "7.7.0",
     "webpack": "2.6.0"
   },

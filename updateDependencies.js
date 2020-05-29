@@ -27,10 +27,10 @@ const toUpdate = JSON.parse(
   .filter(({ package }) => !dontUpdate.includes(package));
 
 toUpdate.forEach(
-  ({ package, current, latest }) =>
+  ({ package, latest }) =>
     (packageJson = packageJson.replace(
-      new RegExp(`"${package}":[ ]*"${current}"`, "g"),
-      `"${package}": "${latest}"`
+      new RegExp(`(?<="${package}":\s*"[\^~]?)\d+\.\d+\.\d+[^"]*(?=")`, "g"),
+      latest
     ))
 );
 
