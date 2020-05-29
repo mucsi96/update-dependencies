@@ -26,12 +26,12 @@ const toUpdate = JSON.parse(
   }))
   .filter(({ package }) => !dontUpdate.includes(package));
 
-toUpdate.forEach(
-  ({ package, latest }) =>
-    (packageJson = packageJson.replace(
-      new RegExp(`(?<="${package}":\s*"[\^~]?)\d+\.\d+\.\d+[^"]*(?=")`, "g"),
-      latest
-    ))
-);
+toUpdate.forEach(({ package, latest }) => {
+  const regex = new RegExp(
+    `(?<="${package}":\\s*"[\\^~]?)\\d+\\.\\d+\\.\\d+[^"]*(?=")`,
+    "g"
+  );
+  packageJson = packageJson.replace(regex, latest);
+});
 
 writeFileSync(packageJsonPath, packageJson);
